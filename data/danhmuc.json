@@ -1,0 +1,86 @@
+{
+    "TrungTamBH": [
+        {
+            "Ten": "Trung Tâm Bảo Hành MSI",
+            "DiaChi": "TP.HCM",
+            "SoDienThoai": "078789987"
+        },
+        {
+            "Ten": "Trung Tâm Bảo Hành Dell",
+            "DiaChi": "TP.HCM",
+            "SoDienThoai": "0782929888"
+        },
+        {
+            "Ten": "HP Authorized Service Center",
+            "DiaChi": "TP.HCM",
+            "SoDienThoai": "0782929777"
+        },
+        {
+            "Ten": "Acer Care Center",
+            "DiaChi": "TP.HCM",
+            "SoDienThoai": "0782929111"
+        },
+        {
+            "Ten": "Lenovo Premium Support",
+            "DiaChi": "TP.HCM",
+            "SoDienThoai": "0782222111"
+        },
+        {
+            "Ten": "MSI Authorized Warranty Service",
+            "DiaChi": "TP.HCM",
+            "SoDienThoai": "07829282244"
+        },
+        {
+            "Ten": "Apple Authorized Service Provider",
+            "DiaChi": "TP.HCM",
+            "SoDienThoai": "078241481512"
+        },
+        {
+            "Ten": "Gigabyte Warranty Center",
+            "DiaChi": "TP.HCM",
+            "SoDienThoai": "07829241112"
+        }
+    ],
+    "DoiTac": [
+        {
+            "Ten": "Trung Tâm Sửa Chữa Máy Tính Minh Phát",
+            "DiaChi": "Trà Vinh",
+            "SoDienThoai": "0907462815"
+        },
+        {
+            "Ten": "Dịch Vụ Tin Học Hoàng Gia",
+            "DiaChi": "Trà Vinh",
+            "SoDienThoai": "0918534226"
+        },
+        {
+            "Ten": "Máy Tính Trà Vinh TechCare",
+            "DiaChi": "Trà Vinh",
+            "SoDienThoai": "0939218407"
+        },
+        {
+            "Ten": "Trung Tâm Laptop Thành Đạt",
+            "DiaChi": "Trà Vinh",
+            "SoDienThoai": "0986744315"
+        },
+        {
+            "Ten": "Sửa Chữa Laptop Phúc An",
+            "DiaChi": "Trà Vinh",
+            "SoDienThoai": "097358649"
+        },
+        {
+            "Ten": "Tin Học Đại Phát Computer",
+            "DiaChi": "Trà Vinh",
+            "SoDienThoai": "0942667158"
+        },
+        {
+            "Ten": "Laptop Care Trà Vinh",
+            "DiaChi": "Trà Vinh",
+            "SoDienThoai": "0961820473"
+        },
+        {
+            "Ten": "HT Computer",
+            "DiaChi": "Kien Thi Nhan",
+            "SoDienThoai": "1234567"
+        }
+    ]
+}

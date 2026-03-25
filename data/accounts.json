@@ -1,0 +1,156 @@
+{
+    "nguyentrongdat": {
+        "MaNhanVien": 0,
+        "TenNhanVien": "Nguyễn Trọng Đạt",
+        "HoTen": "Nguyễn Trọng Đạt",
+        "ChucVu": "Kỹ thuật viên",
+        "MatKhau": "123456",
+        "LoaiTK": "ktv"
+    },
+    "huakhanhdang": {
+        "MaNhanVien": 0,
+        "TenNhanVien": "Hứa Khánh Đăng",
+        "HoTen": "Hứa Khánh Đăng",
+        "ChucVu": "Nhân viên tiếp nhận",
+        "MatKhau": "123456",
+        "LoaiTK": "nhanvien"
+    },
+    "lamthanhdinh": {
+        "MaNhanVien": 0,
+        "TenNhanVien": "Lâm Thanh Đỉnh",
+        "HoTen": "Lâm Thanh Đỉnh",
+        "ChucVu": "Kỹ thuật viên",
+        "MatKhau": "123456",
+        "LoaiTK": "ktv"
+    },
+    "khachhang1": {
+        "MaNhanVien": 0,
+        "TenNhanVien": "Nguyễn Thành Mai",
+        "HoTen": "Nguyễn Thành Mai",
+        "ChucVu": "Khách hàng",
+        "MatKhau": "123456",
+        "LoaiTK": "khachhang"
+    },
+    "khachhang2": {
+        "MaNhanVien": 0,
+        "TenNhanVien": "Nguyễn Tuấn Anh",
+        "HoTen": "Nguyễn Tuấn Anh",
+        "ChucVu": "Khách hàng",
+        "MatKhau": "123456",
+        "LoaiTK": "khachhang"
+    },
+    "khachhang3": {
+        "MaNhanVien": 0,
+        "TenNhanVien": "Nguyễn Hoàng Ngọc",
+        "HoTen": "Nguyễn Hoàng Ngọc",
+        "ChucVu": "Khách hàng",
+        "MatKhau": "123456",
+        "LoaiTK": "khachhang"
+    },
+    "khachhang4": {
+        "MaNhanVien": 0,
+        "TenNhanVien": "Nguyễn Mai Linh",
+        "HoTen": "Nguyễn Mai Linh",
+        "ChucVu": "Khách hàng",
+        "MatKhau": "123456",
+        "LoaiTK": "khachhang"
+    },
+    "khachang5": {
+        "MaNhanVien": 0,
+        "TenNhanVien": "Nguyễn Thành An",
+        "HoTen": "Nguyễn Thành An",
+        "ChucVu": "Khách hàng",
+        "MatKhau": "123123",
+        "LoaiTK": "khachhang"
+    },
+    "kythuatvien1": {
+        "MaNhanVien": 0,
+        "TenNhanVien": "Lê Khánh Duy",
+        "HoTen": "Lê Khánh Duy",
+        "ChucVu": "Kỹ thuật viên",
+        "MatKhau": "123456",
+        "LoaiTK": "ktv"
+    },
+    "admin1": {
+        "MaNhanVien": 0,
+        "TenNhanVien": "Admin Trọng Đạt",
+        "HoTen": "Admin Trọng Đạt",
+        "ChucVu": "Quản lý",
+        "MatKhau": "123456",
+        "LoaiTK": "admin"
+    },
+    "gg_nguyentrongdat10244": {
+        "MaNhanVien": 0,
+        "TenNhanVien": "Trọng Đạt",
+        "HoTen": "Trọng Đạt",
+        "ChucVu": "Khách hàng",
+        "MatKhau": "42b335ca26e4de40738f52e7e47e86d2",
+        "LoaiTK": "khachhang",
+        "Email": "nguyentrongdat10244@gmail.com",
+        "GoogleId": "109717164036742403169"
+    },
+    "khachhang6": {
+        "MaNhanVien": 0,
+        "TenNhanVien": "Nguyễn Tuấn Đạt",
+        "HoTen": "Nguyễn Tuấn Đạt",
+        "ChucVu": "Khách hàng",
+        "MatKhau": "123456",
+        "LoaiTK": "khachhang"
+    },
+    "khachhang7": {
+        "MaNhanVien": 0,
+        "TenNhanVien": "Nguyễn Thanh Hoa",
+        "HoTen": "Nguyễn Thanh Hoa",
+        "ChucVu": "Khách hàng",
+        "MatKhau": "123456",
+        "LoaiTK": "khachhang"
+    },
+    "khachhang8": {
+        "MaNhanVien": 0,
+        "TenNhanVien": "Nguyễn Hoàng Linh",
+        "HoTen": "Nguyễn Hoàng Linh",
+        "ChucVu": "Khách hàng",
+        "MatKhau": "123456",
+        "LoaiTK": "khachhang"
+    },
+    "khachhang9": {
+        "MaNhanVien": 0,
+        "TenNhanVien": "Nguyễn Thanh Mai",
+        "HoTen": "Nguyễn Thanh Mai",
+        "ChucVu": "Khách hàng",
+        "MatKhau": "123456",
+        "LoaiTK": "khachhang"
+    },
+    "khachhang10": {
+        "MaNhanVien": 0,
+        "TenNhanVien": "Nguyễn Lê Đạt",
+        "HoTen": "Nguyễn Lê Đạt",
+        "ChucVu": "Khách hàng",
+        "MatKhau": "123456",
+        "LoaiTK": "khachhang"
+    },
+    "khachhang11": {
+        "MaNhanVien": 0,
+        "TenNhanVien": "Nguyễn Văn Anh",
+        "HoTen": "Nguyễn Văn Anh",
+        "ChucVu": "Khách hàng",
+        "MatKhau": "123456",
+        "LoaiTK": "khachhang"
+    },
+    "khachhang12": {
+        "MaNhanVien": 0,
+        "TenNhanVien": "Đặng Gia Huy",
+        "HoTen": "Đặng Gia Huy",
+        "ChucVu": "Khách hàng",
+        "MatKhau": "123456",
+        "LoaiTK": "khachhang"
+    },
+    "khachhang13": {
+        "MaNhanVien": 0,
+        "TenNhanVien": "Bùi Đức Anh",
+        "HoTen": "Bùi Đức Anh",
+        "ChucVu": "Khách hàng",
+        "MatKhau": "123456",
+        "LoaiTK": "khachhang"
+    }
+}

@@ -1,0 +1,8 @@
+# Bật RewriteEngine
+RewriteEngine On
+
+# Chuyển hướng tất cả request đến thư mục public
+# Bỏ qua nếu file/folder đã tồn tại (css, js, images...)
+RewriteRule ^$ public/ [L]
+RewriteCond %{REQUEST_URI} !^/TEST/public/
+RewriteRule (.*) public/$1 [L]
