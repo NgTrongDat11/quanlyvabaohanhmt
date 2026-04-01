@@ -147,8 +147,16 @@
     },
     "khachhang13": {
         "MaNhanVien": 0,
-        "TenNhanVien": "Bùi Đức Anh",
-        "HoTen": "Bùi Đức Anh",
+        "TenNhanVien": "Bùi Đức Tú",
+        "HoTen": "Bùi Đức Tú",
+        "ChucVu": "Khách hàng",
+        "MatKhau": "$2y$10$HJMfTBYGKyRc.vyHie\/q3e4ydOfa29QzpkycuMKXMwFNzfWOSgnD2",
+        "LoaiTK": "khachhang"
+    },
+    "trongdat1": {
+        "MaNhanVien": 0,
+        "TenNhanVien": "Nguyễn Văn Đạt",
+        "HoTen": "Nguyễn Văn Đạt",
         "ChucVu": "Khách hàng",
         "MatKhau": "123456",
         "LoaiTK": "khachhang"

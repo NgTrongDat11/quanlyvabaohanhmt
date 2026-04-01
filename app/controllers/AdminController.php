@@ -775,6 +775,45 @@ class AdminController extends Controller
         $this->redirect('admin/taikhoan');
     }
 
+    /**
+     * Cập nhật thông tin tài khoản
+     */
+    public function capnhattaikhoan()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $this->redirect('admin/taikhoan');
+            return;
+        }
+
+        $username = trim($_POST['username'] ?? '');
+        $hoTen    = trim($_POST['HoTen'] ?? '');
+        $matKhau  = trim($_POST['MatKhau'] ?? '');
+        $loaiTK   = trim($_POST['LoaiTK'] ?? 'nhanvien');
+
+        if (!$username || !$hoTen) {
+            flash('error', 'Vui lòng điền đầy đủ thông tin!');
+            $this->redirect('admin/taikhoan');
+            return;
+        }
+
+        $nhanVienModel = $this->model('NhanVien');
+        
+        // Cập nhật thông tin tài khoản
+        $result = $nhanVienModel->updateAccount($username, [
+            'HoTen' => $hoTen,
+            'LoaiTK' => $loaiTK,
+            'MatKhau' => $matKhau // Chỉ update nếu có điền
+        ]);
+
+        if ($result) {
+            flash('success', 'Đã cập nhật tài khoản "' . $username . '"!');
+        } else {
+            flash('error', 'Không thể cập nhật tài khoản này!');
+        }
+
+        $this->redirect('admin/taikhoan');
+    }
+
     // ==========================================
     // GỬI BẢO HÀNH
     // ==========================================
@@ -1132,7 +1171,10 @@ class AdminController extends Controller
      */
     public function xoasanpham($id = null)
     {
-        if (!$id) { $this->redirect('admin/sanpham'); }
+        if (!$id || $_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $this->redirect('admin/sanpham');
+            return;
+        }
         $model = $this->model('SanPham');
         $model->delete($id);
         flash('success', 'Đã xóa sản phẩm!');

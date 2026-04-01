@@ -110,6 +110,10 @@
                     </td>
                     <td style="text-align:center;">
                         <?php if (!$isHardcoded): ?>
+                            <button type="button" class="btn btn-sm btn-primary" 
+                                onclick="moModalSuaTaiKhoan(<?= htmlspecialchars(json_encode($acc + ['username' => $username]), ENT_QUOTES) ?>)">
+                                Sửa
+                            </button>
                             <form method="POST" action="<?= url('admin/xoataikhoan/' . urlencode($username)) ?>" style="display:inline;" onsubmit="return confirm('Xóa tài khoản <?= e($username) ?>?')">
                                 <button type="submit" class="btn btn-sm btn-danger">Xóa</button>
                             </form>
@@ -129,3 +133,66 @@
         ?>
     </div>
 </div>
+
+<!-- Modal Sửa Tài Khoản -->
+<div id="modalSuaTaiKhoan" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1002;align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:10px;padding:25px;width:500px;max-width:95vw;">
+        <h3 style="margin-top:0;">✏️ Sửa Thông Tin Tài Khoản</h3>
+        <form method="POST" action="<?= url('admin/capnhattaikhoan') ?>">
+            <input type="hidden" name="username" id="edit_username">
+            
+            <div class="form-group">
+                <label>Tên người dùng</label>
+                <input type="text" id="edit_username_display" class="form-control" disabled>
+            </div>
+            
+            <div class="form-group">
+                <label>Họ và tên <span style="color:red">*</span></label>
+                <input type="text" name="HoTen" id="edit_HoTen" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Mật khẩu mới</label>
+                <input type="password" name="MatKhau" id="edit_MatKhau" class="form-control" placeholder="Để trống nếu không đổi">
+                <small style="color:#888;">Chỉ điền nếu muốn thay đổi mật khẩu</small>
+            </div>
+            
+            <div class="form-group">
+                <label>Loại tài khoản <span style="color:red">*</span></label>
+                <select name="LoaiTK" id="edit_LoaiTK" class="form-control" required>
+                    <option value="nhanvien">Nhân viên tiếp nhận</option>
+                    <option value="ktv">Kỹ thuật viên</option>
+                    <option value="admin">Quản lý (Admin)</option>
+                    <option value="khachhang">Khách hàng</option>
+                </select>
+            </div>
+            
+            <div style="display:flex;gap:10px;margin-top:20px;justify-content:flex-end;">
+                <button type="button" class="btn btn-secondary" onclick="dongModalSuaTaiKhoan()">Hủy</button>
+                <button type="submit" class="btn btn-primary">Cập Nhật</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function moModalSuaTaiKhoan(acc) {
+    document.getElementById('edit_username').value = acc.username;
+    document.getElementById('edit_username_display').value = acc.username;
+    document.getElementById('edit_HoTen').value = acc.TenNhanVien || acc.HoTen || '';
+    document.getElementById('edit_MatKhau').value = '';
+    document.getElementById('edit_LoaiTK').value = acc.LoaiTK || 'nhanvien';
+    
+    const modal = document.getElementById('modalSuaTaiKhoan');
+    modal.style.display = 'flex';
+}
+
+function dongModalSuaTaiKhoan() {
+    document.getElementById('modalSuaTaiKhoan').style.display = 'none';
+}
+
+// Đóng modal khi click bên ngoài
+document.getElementById('modalSuaTaiKhoan')?.addEventListener('click', function(e) {
+    if (e.target === this) dongModalSuaTaiKhoan();
+});
+</script>

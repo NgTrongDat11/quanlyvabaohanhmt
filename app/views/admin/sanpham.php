@@ -68,22 +68,20 @@
                                     }
                                 ?>
                             </td>
-                            <td>
-                                <div class="action-btns">
-                                    <button class="action-btn" style="color:#e6a817;border:none;background:none;cursor:pointer;font-size:16px;" title="Sửa"
-                                        onclick='moModalSua(<?= json_encode([
-                                            "MaSanPham" => $sp["MaSanPham"],
-                                            "TenSanPham" => $sp["TenSanPham"],
-                                            "MaSerial" => $sp["MaSerial"],
-                                            "GhiChu" => $sp["GhiChu"] ?? "",
-                                            "HinhAnh" => $sp["HinhAnh"] ?? ""
-                                        ], JSON_HEX_APOS | JSON_HEX_QUOT) ?>)'>✏️</button>
-                                    <a href="<?= url('admin/xoasanpham/' . $sp['MaSanPham']) ?>"
-                                       class="action-btn"
-                                       style="color:#dc3545;text-decoration:none;"
-                                       title="Xóa"
-                                       onclick="return confirm('Xóa sản phẩm này?')">🗑</a>
-                                </div>
+                            <td style="text-align:center;">
+                                <button type="button" class="btn btn-sm btn-primary"
+                                    onclick='moModalSua(<?= json_encode([
+                                        "MaSanPham" => $sp["MaSanPham"],
+                                        "TenSanPham" => $sp["TenSanPham"],
+                                        "MaSerial" => $sp["MaSerial"],
+                                        "GhiChu" => $sp["GhiChu"] ?? "",
+                                        "HinhAnh" => $sp["HinhAnh"] ?? ""
+                                    ], JSON_HEX_APOS | JSON_HEX_QUOT) ?>)'>
+                                    Sửa
+                                </button>
+                                <form method="POST" action="<?= url('admin/xoasanpham/' . $sp['MaSanPham']) ?>" style="display:inline;" onsubmit="return confirm('Xóa sản phẩm này?')">
+                                    <button type="submit" class="btn btn-sm btn-danger">Xóa</button>
+                                </form>
                             </td>
                         </tr>
                         <?php endforeach; ?>

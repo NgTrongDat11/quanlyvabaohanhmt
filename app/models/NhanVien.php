@@ -105,6 +105,36 @@ class NhanVien
     }
 
     /**
+     * Cập nhật thông tin tài khoản
+     */
+    public function updateAccount($username, $data)
+    {
+        $jsonFile = ROOT_PATH . '/data/accounts.json';
+        if (!file_exists($jsonFile)) return false;
+
+        $accounts = json_decode(file_get_contents($jsonFile), true) ?? [];
+        if (!isset($accounts[$username])) return false;
+
+        // Cập nhật họ tên
+        if (!empty($data['HoTen'])) {
+            $accounts[$username]['HoTen'] = $data['HoTen'];
+            $accounts[$username]['TenNhanVien'] = $data['HoTen'];
+        }
+
+        // Cập nhật loại tài khoản
+        if (!empty($data['LoaiTK'])) {
+            $accounts[$username]['LoaiTK'] = $data['LoaiTK'];
+        }
+
+        // Cập nhật mật khẩu (chỉ khi có điền) - lưu plaintext giống createAccount
+        if (!empty($data['MatKhau'])) {
+            $accounts[$username]['MatKhau'] = $data['MatKhau'];
+        }
+
+        return file_put_contents($jsonFile, json_encode($accounts, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT)) !== false;
+    }
+
+    /**
      * Đăng nhập (dùng tài khoản hardcode + JSON)
      */
     public function login($tenDangNhap, $matKhau)

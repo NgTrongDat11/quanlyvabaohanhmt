@@ -117,12 +117,11 @@
                                 <?php endif; ?>
                             </td>
                             <td class="text-right"><?= number_format($p['TongTien'] ?? 0, 0, ',', '.') ?>đ</td>
-                            <td>
-                                <div class="action-btns">
-                                    <a href="<?= url('admin/xemphieu/' . $p['MaPhieu']) ?>" class="action-btn view" title="Xem chi tiết">👁</a>
-                                    <a href="<?= url('admin/xemphieu/' . $p['MaPhieu']) ?>" class="action-btn print" title="In biên nhận" onclick="window.open(this.href); return false;">🖨</a>
-                                    <form method="POST" action="<?= url('admin/xoaphieu/' . $p['MaPhieu']) ?>" style="display:inline;" onsubmit="return confirm('Xóa phiếu #<?= $p['MaPhieu'] ?>? Hành động này không thể hoàn tác!')">
-                                        <button type="submit" class="action-btn" style="color:#dc3545;background:none;border:none;cursor:pointer;font-size:inherit;padding:0;" title="Xóa">🗑</button>
+                            <td style="text-align:center;">
+                                <div style="display:inline-flex; gap:6px; align-items:center; justify-content:center;">
+                                    <a href="<?= url('admin/xemphieu/' . $p['MaPhieu']) ?>" class="btn btn-sm btn-info" style="display:inline-block; min-width:56px; padding:6px 12px; line-height:1.5; font-size:13px; font-weight:600; box-sizing:border-box;">Xem</a>
+                                    <form method="POST" action="<?= url('admin/xoaphieu/' . $p['MaPhieu']) ?>" style="display:inline-flex; margin:0;" onsubmit="return confirm('Xóa phiếu #<?= $p['MaPhieu'] ?>? Hành động này không thể hoàn tác!')">
+                                        <button type="submit" class="btn btn-sm btn-danger" style="display:inline-block; min-width:56px; padding:6px 12px; line-height:1.5; font-size:13px; font-weight:600; box-sizing:border-box; font-family:inherit;">Xóa</button>
                                     </form>
                                 </div>
                             </td>
