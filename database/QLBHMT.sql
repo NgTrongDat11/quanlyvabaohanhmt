@@ -24,6 +24,22 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `binhluan`
+--
+
+CREATE TABLE `binhluan` (
+  `MaBinhLuan` int(11) NOT NULL,
+  `MaPhieu` int(11) NOT NULL,
+  `TenDangNhap` varchar(50) NOT NULL,
+  `HoTen` varchar(200) NOT NULL,
+  `LoaiTaiKhoan` varchar(50) NOT NULL COMMENT 'admin, ktv, nhanvien',
+  `NoiDung` text NOT NULL,
+  `ThoiGian` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `chitietsuachua`
 --
 
@@ -151,6 +167,13 @@ CREATE TABLE `sanpham` (
 --
 
 --
+-- Chỉ mục cho bảng `binhluan`
+--
+ALTER TABLE `binhluan`
+  ADD PRIMARY KEY (`MaBinhLuan`),
+  ADD KEY `MaPhieu` (`MaPhieu`);
+
+--
 -- Chỉ mục cho bảng `chitietsuachua`
 --
 ALTER TABLE `chitietsuachua`
@@ -205,6 +228,12 @@ ALTER TABLE `sanpham`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `binhluan`
+--
+ALTER TABLE `binhluan`
+  MODIFY `MaBinhLuan` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT cho bảng `chitietsuachua`
 --
 ALTER TABLE `chitietsuachua`
@@ -249,6 +278,12 @@ ALTER TABLE `sanpham`
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
+
+--
+-- Các ràng buộc cho bảng `binhluan`
+--
+ALTER TABLE `binhluan`
+  ADD CONSTRAINT `FK_BinhLuan_MaPhieu` FOREIGN KEY (`MaPhieu`) REFERENCES `phieusuachua` (`MaPhieu`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `chitietsuachua`

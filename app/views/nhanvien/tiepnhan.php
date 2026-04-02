@@ -61,20 +61,41 @@
             <!-- Thông tin khách hàng -->
             <div class="bien-nhan-section">
                 <h4>Thông Tin Khách Hàng</h4>
+
+                <div class="bien-nhan-row">
+                    <label>Chọn tài khoản KH (nếu có):</label>
+                    <div style="flex:1;">
+                        <select id="selectKhachTK" class="form-control" onchange="fillKhachTK()" style="width:100%;">
+                            <option value="">-- Nhập tay thông tin khách hàng --</option>
+                            <?php foreach (($dsKhachTK ?? []) as $username => $acc): ?>
+                                <option
+                                    value="<?= e($username) ?>"
+                                    data-username="<?= e($username) ?>"
+                                    data-ten="<?= e($acc['HoTen'] ?? $acc['TenNhanVien'] ?? $username) ?>"
+                                >
+                                    <?= e($acc['HoTen'] ?? $acc['TenNhanVien'] ?? $username) ?> (<?= e($username) ?>)
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                        <small style="color:#666;font-size:12px;display:block;margin-top:4px;line-height:1.35;">
+                            Có thể chọn tài khoản hoặc để trống và nhập tay.
+                        </small>
+                    </div>
+                </div>
                 
                 <div class="bien-nhan-row">
                     <label>Tên KH:</label>
-                    <input type="text" name="TenKhachHang" class="form-control" placeholder="Nhập tên khách hàng..." required>
+                    <input type="text" id="tenKH" name="TenKhachHang" class="form-control" placeholder="Nhập tên khách hàng..." required>
                 </div>
 
                 <div class="bien-nhan-row">
                     <label>Số điện thoại:</label>
-                    <input type="text" name="SoDienThoai" class="form-control" placeholder="Nhập SĐT khách hàng..." required>
+                    <input type="text" id="sdtKH" name="SoDienThoai" class="form-control" placeholder="Nhập SĐT khách hàng..." required>
                 </div>
 
                 <div class="bien-nhan-row">
                     <label>Địa chỉ:</label>
-                    <input type="text" name="DiaChi" class="form-control" placeholder="Nhập địa chỉ khách hàng...">
+                    <input type="text" id="diachiKH" name="DiaChi" class="form-control" placeholder="Nhập địa chỉ khách hàng...">
                 </div>
 
                 <div class="bien-nhan-row">
@@ -122,4 +143,9 @@ function fillKhachTK() {
         document.getElementById('diachiKH').value = '';
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Giữ liên kết tài khoản KH khi người dùng nhập thêm SĐT/địa chỉ.
+    // Chỉ chuyển sang nhập tay khi người dùng chủ động chọn option "Nhập tay".
+});
 </script>

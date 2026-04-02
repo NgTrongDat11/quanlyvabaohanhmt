@@ -88,11 +88,16 @@ class KtvController extends Controller
         }
 
         $chiTiet = $chiTietModel->getByPhieu($maPhieu);
+        
+        // Lấy bình luận
+        $binhLuanModel = $this->model('BinhLuan');
+        $binhLuan = $binhLuanModel->getByPhieu($maPhieu);
 
         $this->render('ktv/xemphieu', [
             'title' => 'Chi Tiết Phiếu #' . $maPhieu,
             'phieu' => $phieu,
-            'chiTiet' => $chiTiet
+            'chiTiet' => $chiTiet,
+            'binhLuan' => $binhLuan
         ]);
     }
 
@@ -404,5 +409,107 @@ class KtvController extends Controller
         }
 
         $this->redirect('ktv/xemphieu/' . $maPhieu);
+    }
+
+    /**
+     * Thêm bình luận vào phiếu
+     */
+    public function thembinhluan()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            echo json_encode(['success' => false, 'message' => 'Invalid request']);
+            exit;
+        }
+
+        $maPhieu = intval($_POST['MaPhieu'] ?? 0);
+        $noiDung = trim($_POST['NoiDung'] ?? '');
+
+        if (!$maPhieu || !$noiDung) {
+            echo json_encode(['success' => false, 'message' => 'Thiếu thông tin']);
+            exit;
+        }
+
+        $user = $_SESSION['user'] ?? [];
+        $binhLuanModel = $this->model('BinhLuan');
+        
+        $data = [
+            'MaPhieu' => $maPhieu,
+            'TenDangNhap' => $user['TenDangNhap'] ?? 'unknown',
+            'HoTen' => $user['HoTen'] ?? $user['TenNhanVien'] ?? 'Unknown',
+            'LoaiTaiKhoan' => $user['LoaiTK'] ?? 'ktv',
+            'NoiDung' => $noiDung
+        ];
+
+        $result = $binhLuanModel->themBinhLuan($data);
+
+        if ($result) {
+            echo json_encode([
+                'success' => true,
+                'message' => 'Đã thêm bình luận',
+                'data' => [
+                    'MaBinhLuan' => $result,
+                    'HoTen' => $data['HoTen'],
+                    'LoaiTaiKhoan' => $data['LoaiTaiKhoan'],
+                    'NoiDung' => $data['NoiDung'],
+                    'ThoiGian' => date('Y-m-d H:i:s')
+                ]
+            ]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Lỗi khi thêm bình luận']);
+        }
+        exit;
+    }
+
+    /**
+     * Xóa bình luận
+     */
+    public function xoabinhluan()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            echo json_encode(['success' => false]);
+            exit;
+        }
+
+        $maBinhLuan = intval($_POST['MaBinhLuan'] ?? 0);
+        if (!$maBinhLuan) {
+            echo json_encode(['success' => false]);
+            exit;
+        }
+
+        $user = $_SESSION['user'] ?? [];
+        $binhLuanModel = $this->model('BinhLuan');
+        $result = $binhLuanModel->xoaBinhLuan($maBinhLuan, $user['TenDangNhap'] ?? '', false);
+
+        echo json_encode(['success' => $result]);
+        exit;
+    }
+
+    /**
+     * Sửa bình luận
+     */
+    public function suabinhluan()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            echo json_encode(['success' => false, 'message' => 'Invalid request']);
+            exit;
+        }
+
+        $maBinhLuan = intval($_POST['MaBinhLuan'] ?? 0);
+        $noiDung = trim($_POST['NoiDung'] ?? '');
+
+        if (!$maBinhLuan || !$noiDung) {
+            echo json_encode(['success' => false, 'message' => 'Thiếu thông tin']);
+            exit;
+        }
+
+        $user = $_SESSION['user'] ?? [];
+        $binhLuanModel = $this->model('BinhLuan');
+        $result = $binhLuanModel->suaBinhLuan($maBinhLuan, $noiDung, $user['TenDangNhap'] ?? '', false);
+
+        echo json_encode([
+            'success' => $result,
+            'message' => $result ? 'Đã cập nhật bình luận' : 'Không thể sửa bình luận này'
+        ]);
+        exit;
     }
 }

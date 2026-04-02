@@ -7,18 +7,18 @@
 
 <!-- Thống kê nhanh -->
 <div class="nv-stats">
-    <div class="nv-stat-card nv-stat-today">
+    <a href="<?= url('nhanvien/danhsach?tu_ngay=' . date('Y-m-d') . '&den_ngay=' . date('Y-m-d')) ?>" class="nv-stat-card nv-stat-today">
         <div class="nv-stat-number"><?= $thongKe['phieu_hom_nay'] ?? 0 ?></div>
         <div class="nv-stat-label">Tiếp nhận hôm nay</div>
-    </div>
-    <div class="nv-stat-card nv-stat-waiting">
+    </a>
+    <a href="<?= url('nhanvien/traphieu') ?>" class="nv-stat-card nv-stat-waiting">
         <div class="nv-stat-number"><?= $thongKe['cho_tra'] ?? 0 ?></div>
         <div class="nv-stat-label">Chờ trả khách</div>
-    </div>
-    <div class="nv-stat-card nv-stat-month">
+    </a>
+    <a href="<?= url('nhanvien/danhsach') ?>" class="nv-stat-card nv-stat-month">
         <div class="nv-stat-number"><?= $thongKe['tong_phieu_thang'] ?? 0 ?></div>
         <div class="nv-stat-label">Tổng phiếu tháng</div>
-    </div>
+    </a>
 </div>
 
 <!-- Chức năng chính -->
@@ -103,9 +103,12 @@
     padding: 24px 20px;
     text-align: center;
     border: 2px solid #f0f0f0;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
 }
-.nv-stat-card:hover { transform: translateY(-2px); }
+.nv-stat-card:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
 .nv-stat-number {
     font-size: 36px;
     font-weight: 800;

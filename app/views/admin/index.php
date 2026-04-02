@@ -8,34 +8,34 @@
 
 <!-- Thống kê -->
 <div class="adm-stats">
-    <div class="adm-stat-card adm-stat-1">
+    <a href="<?= url('admin/phieusuachua') ?>" class="adm-stat-card adm-stat-1">
         <div class="adm-stat-number"><?= $stats['tongPhieu'] ?? 0 ?></div>
         <div class="adm-stat-label">Tổng phiếu</div>
-    </div>
-    <div class="adm-stat-card adm-stat-2">
+    </a>
+    <a href="<?= url('admin/phieusuachua?trang_thai=Chờ xử lý') ?>" class="adm-stat-card adm-stat-2">
         <div class="adm-stat-number"><?= $stats['choXuLy'] ?? 0 ?></div>
         <div class="adm-stat-label">Chờ xử lý</div>
-    </div>
-    <div class="adm-stat-card adm-stat-3">
+    </a>
+    <a href="<?= url('admin/phieusuachua?trang_thai=Tiếp nhận') ?>" class="adm-stat-card adm-stat-3">
         <div class="adm-stat-number"><?= $stats['dangSua'] ?? 0 ?></div>
         <div class="adm-stat-label">Tiếp nhận</div>
-    </div>
-    <div class="adm-stat-card adm-stat-4">
+    </a>
+    <a href="<?= url('admin/phieusuachua?trang_thai=Hoàn thành') ?>" class="adm-stat-card adm-stat-4">
         <div class="adm-stat-number"><?= $stats['hoanthanh'] ?? 0 ?></div>
         <div class="adm-stat-label">Hoàn thành</div>
-    </div>
-    <div class="adm-stat-card adm-stat-5">
+    </a>
+    <a href="<?= url('admin/taikhoan?loai=khachhang') ?>" class="adm-stat-card adm-stat-5">
         <div class="adm-stat-number"><?= $stats['tongKhach'] ?? 0 ?></div>
         <div class="adm-stat-label">TK Khách hàng</div>
-    </div>
-    <div class="adm-stat-card adm-stat-6">
+    </a>
+    <a href="<?= url('admin/taikhoan') ?>" class="adm-stat-card adm-stat-6">
         <div class="adm-stat-number"><?= $stats['tongTaiKhoan'] ?? 0 ?></div>
         <div class="adm-stat-label">Tổng tài khoản</div>
-    </div>
-    <div class="adm-stat-card adm-stat-1" style="opacity:0.85;">
+    </a>
+    <a href="<?= url('admin/sanpham') ?>" class="adm-stat-card adm-stat-1" style="opacity:0.85;">
         <div class="adm-stat-number"><?= $stats['tongSanPham'] ?? 0 ?></div>
         <div class="adm-stat-label">Sản phẩm</div>
-    </div>
+    </a>
 </div>
 
 <!-- Chức năng chính -->
@@ -157,6 +157,9 @@
     text-align: center;
     border: 2px solid #f0f0f0;
     transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
 }
 .adm-stat-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
 .adm-stat-number {

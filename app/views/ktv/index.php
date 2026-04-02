@@ -7,22 +7,22 @@
 
 <!-- Thống kê nhanh -->
 <div class="ktv-stats">
-    <div class="ktv-stat-card ktv-stat-assigned">
+    <a href="#daphancong" class="ktv-stat-card ktv-stat-assigned" onclick="document.querySelector('.ktv-board').scrollIntoView({behavior:'smooth'}); return false;">
         <div class="ktv-stat-number"><?= count($daPhanCong) ?></div>
         <div class="ktv-stat-label">Đã phân công</div>
-    </div>
-    <div class="ktv-stat-card ktv-stat-checking">
+    </a>
+    <a href="#dangkiemtra" class="ktv-stat-card ktv-stat-checking" onclick="document.querySelector('.ktv-board').scrollIntoView({behavior:'smooth'}); return false;">
         <div class="ktv-stat-number"><?= count($dangKiemTra) ?></div>
         <div class="ktv-stat-label">Đang kiểm tra</div>
-    </div>
-    <div class="ktv-stat-card ktv-stat-fixing">
+    </a>
+    <a href="<?= url('ktv/danglam') ?>" class="ktv-stat-card ktv-stat-fixing">
         <div class="ktv-stat-number"><?= count($dangSua) ?></div>
         <div class="ktv-stat-label">Tiếp nhận</div>
-    </div>
-    <div class="ktv-stat-card ktv-stat-done">
+    </a>
+    <a href="<?= url('ktv/hoanthanh') ?>" class="ktv-stat-card ktv-stat-done">
         <div class="ktv-stat-number"><?= count($hoanThanh) ?></div>
         <div class="ktv-stat-label">Hoàn thành</div>
-    </div>
+    </a>
 </div>
 
 <!-- Chức năng chính -->
@@ -139,9 +139,12 @@
     padding: 24px 20px;
     text-align: center;
     border: 2px solid #f0f0f0;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
 }
-.ktv-stat-card:hover { transform: translateY(-2px); }
+.ktv-stat-card:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
 .ktv-stat-number {
     font-size: 36px;
     font-weight: 800;
