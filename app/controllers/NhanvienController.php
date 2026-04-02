@@ -191,8 +191,7 @@ class NhanvienController extends Controller
             'GhiChuTinhTrang' => trim($_POST['GhiChuTinhTrang'] ?? ''),
             'PhuKienKemTheo' => trim($_POST['PhuKienKemTheo'] ?? ''),
             'TongTien'       => 0,
-            'TaiKhoanKH'     => trim($_POST['TaiKhoanKH'] ?? ''),
-            'PhuKienKemTheo' => trim($_POST['PhuKienKemTheo'] ?? '')
+            'TaiKhoanKH'     => trim($_POST['TaiKhoanKH'] ?? '')
         ];
 
         $maPhieu = $phieuModel->create($data);

@@ -77,7 +77,7 @@
                     </div>
                 </div>
                 <div style="display:flex;gap:10px;margin-top:10px;">
-                    <button type="submit" class="btn btn-primary">Lưu Bản Ghi</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
                     <button type="button" class="btn btn-secondary" onclick="toggleForm('formTaoBH')">Hủy</button>
                 </div>
             </form>
