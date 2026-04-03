@@ -65,30 +65,15 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>Số tiền thu:</label>
-                    <input type="text" name="SoTienThu_display" id="soTienThu" class="form-control money-input" required value="0" oninput="capNhatQR()">
+                    <input type="text" name="SoTienThu_display" id="soTienThu" class="form-control money-input" required value="0">
                     <input type="hidden" name="SoTienThu" value="0">
                 </div>
                 <div class="form-group">
                     <label>Hình thức thanh toán:</label>
-                    <select name="HinhThucTT" id="hinhThucTT" class="form-control" onchange="toggleQR()">
+                    <select name="HinhThucTT" id="hinhThucTT" class="form-control">
                         <option value="Tiền mặt">Tiền mặt</option>
                         <option value="Chuyển khoản">Chuyển khoản</option>
                     </select>
-                </div>
-                <!-- QR Code chuyển khoản -->
-                <div id="qrSection" style="display:none;">
-                    <div class="form-group">
-                        <label>Nội dung chuyển khoản:</label>
-                        <input type="text" id="noiDungCK" class="form-control" value="" oninput="capNhatQR()">
-                    </div>
-                    <div style="text-align:center; padding:10px 0;">
-                        <p style="margin:0 0 10px; font-weight:600; color:#1a73e8;">Quét mã QR để chuyển khoản</p>
-                        <img id="qrImage" src="" alt="QR Chuyển khoản" style="max-width:250px; border-radius:8px; border:2px solid #e0e0e0;">
-                        <div style="margin-top:10px; font-size:13px; color:#666;">
-                            <p style="margin:2px 0;"><strong>MB Bank</strong> - 0782929512</p>
-                            <p style="margin:2px 0;">NGUYEN TRONG DAT</p>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -150,12 +135,6 @@
 </style>
 
 <script>
-// === CẤU HÌNH NGÂN HÀNG (thay đổi tại đây) ===
-var QR_BANK    = 'MB';                // Mã ngân hàng: MB, VCB, TCB, ACB, BIDV...
-var QR_STK     = '0782929512';        // Số tài khoản
-var QR_TEN     = 'NGUYEN TRONG DAT';  // Tên chủ TK (không dấu)
-// ================================================
-
 var currentTongTien = 0;
 var currentMaPhieu  = 0;
 
@@ -173,44 +152,10 @@ function xacNhanTra(maPhieu, tongTien) {
         if (hiddenInput) hiddenInput.value = currentTongTien;
     }
 
-    // Reset về tiền mặt
+    // Reset mặc định về tiền mặt
     document.getElementById('hinhThucTT').value = 'Tiền mặt';
-    document.getElementById('qrSection').style.display = 'none';
 
     document.getElementById('modalTra').style.display = 'flex';
-}
-
-function toggleQR() {
-    var mode = document.getElementById('hinhThucTT').value;
-    var qrSection = document.getElementById('qrSection');
-
-    if (mode === 'Chuyển khoản') {
-        // Đặt nội dung mặc định
-        var noiDungInput = document.getElementById('noiDungCK');
-        if (!noiDungInput.value) {
-            noiDungInput.value = 'Thanh toan phieu ' + currentMaPhieu;
-        }
-        capNhatQR();
-        qrSection.style.display = 'block';
-    } else {
-        qrSection.style.display = 'none';
-    }
-}
-
-function capNhatQR() {
-    var mode = document.getElementById('hinhThucTT').value;
-    if (mode !== 'Chuyển khoản') return;
-
-    var form = document.getElementById('hinhThucTT').closest('form');
-    var soTien = parseInt(form.querySelector('input[name="SoTienThu"]').value) || currentTongTien;
-    var noiDung = document.getElementById('noiDungCK').value || ('Thanh toan phieu ' + currentMaPhieu);
-
-    var qrUrl = 'https://img.vietqr.io/image/' + QR_BANK + '-' + QR_STK + '-compact.png'
-        + '?amount=' + soTien
-        + '&addInfo=' + encodeURIComponent(noiDung)
-        + '&accountName=' + encodeURIComponent(QR_TEN);
-
-    document.getElementById('qrImage').src = qrUrl;
 }
 
 function dongModal() {
