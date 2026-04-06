@@ -1446,5 +1446,43 @@ class AdminController extends Controller
         ]);
         exit;
     }
+
+    /**
+     * Lấy bình luận mới (cho real-time update)
+     */
+    public function laybinhluanmoi()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            echo json_encode(['success' => false, 'comments' => []]);
+            exit;
+        }
+
+        $maPhieu = intval($_POST['MaPhieu'] ?? 0);
+        $afterTime = $_POST['afterTime'] ?? '';
+
+        if (!$maPhieu || !$afterTime) {
+            echo json_encode(['success' => false, 'comments' => []]);
+            exit;
+        }
+
+        $binhLuanModel = $this->model('BinhLuan');
+        $newComments = $binhLuanModel->getNewComments($maPhieu, $afterTime);
+
+        $user = $_SESSION['user'] ?? [];
+        $currentUser = $user['TenDangNhap'] ?? '';
+        $isAdmin = $this->hasRole(['admin', 'Quản lý']);
+
+        // Thêm thông tin permission cho mỗi comment
+        foreach ($newComments as &$comment) {
+            $isOwner = ($comment['TenDangNhap'] ?? '') === $currentUser;
+            $comment['canManage'] = $isOwner || $isAdmin;
+        }
+
+        echo json_encode([
+            'success' => true,
+            'comments' => $newComments
+        ]);
+        exit;
+    }
 }
 

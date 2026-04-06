@@ -99,4 +99,18 @@ class BinhLuan
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['total'] ?? 0;
     }
+
+    /**
+     * Lấy bình luận mới sau một thời điểm cụ thể (cho real-time update)
+     */
+    public function getNewComments($maPhieu, $afterTimestamp)
+    {
+        $stmt = $this->db->prepare("
+            SELECT * FROM {$this->table}
+            WHERE MaPhieu = ? AND ThoiGian > ?
+            ORDER BY ThoiGian ASC
+        ");
+        $stmt->execute([$maPhieu, $afterTimestamp]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

@@ -650,6 +650,13 @@ function createCommentElement(data) {
         minute: '2-digit'
     });
     
+    // Hiển thị nút sửa/xóa nếu có quyền
+    const canManage = data.canManage !== undefined ? data.canManage : true;
+    const actionButtons = canManage ? `
+        <button type="button" onclick="batDauSuaBinhLuan(${data.MaBinhLuan})" class="btn-edit-comment" title="Sửa">Sửa</button>
+        <button type="button" onclick="xoaBinhLuan(${data.MaBinhLuan})" class="btn-delete-comment" title="Xóa">×</button>
+    ` : '';
+    
     return `
         <div class="comment-item ${colorClass}" data-id="${data.MaBinhLuan}" data-content="${escapeAttr(data.NoiDung)}">
             <div class="comment-header">
@@ -659,8 +666,7 @@ function createCommentElement(data) {
                 </div>
                 <div class="comment-meta">
                     <span class="comment-time">${time}</span>
-                    <button type="button" onclick="batDauSuaBinhLuan(${data.MaBinhLuan})" class="btn-edit-comment" title="Sửa">Sửa</button>
-                    <button type="button" onclick="xoaBinhLuan(${data.MaBinhLuan})" class="btn-delete-comment" title="Xóa">×</button>
+                    ${actionButtons}
                 </div>
             </div>
             <div class="comment-content">${formatCommentContent(data.NoiDung || '')}</div>
@@ -765,4 +771,62 @@ function updateCommentCount() {
         badge.textContent = `${count} bình luận`;
     }
 }
+
+// Real-time comment polling
+let lastCommentTime = '<?= date("Y-m-d H:i:s") ?>';
+let pollingInterval = null;
+
+function pollNewComments() {
+    fetch('<?= url('admin/laybinhluanmoi') ?>', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `MaPhieu=${maPhieu}&afterTime=${encodeURIComponent(lastCommentTime)}`
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success && data.comments && data.comments.length > 0) {
+            const commentList = document.getElementById('commentList');
+            const empty = document.getElementById('emptyComment');
+            if (empty) empty.remove();
+            
+            data.comments.forEach(comment => {
+                // Kiểm tra xem comment này đã tồn tại chưa
+                if (!document.querySelector(`.comment-item[data-id="${comment.MaBinhLuan}"]`)) {
+                    const newCommentHTML = createCommentElement(comment);
+                    commentList.insertAdjacentHTML('beforeend', newCommentHTML);
+                    
+                    // Update last time
+                    lastCommentTime = comment.ThoiGian;
+                    
+                    // Scroll to new comment
+                    const commentListContainer = document.querySelector('.comment-list');
+                    if (commentListContainer) {
+                        commentListContainer.scrollTop = commentListContainer.scrollHeight;
+                    }
+                }
+            });
+            
+            // Update badge count
+            updateCommentCount();
+        }
+    })
+    .catch(err => {
+        console.error('Polling error:', err);
+    });
+}
+
+// Bắt đầu polling khi trang load
+document.addEventListener('DOMContentLoaded', function() {
+    // Poll every 2 seconds
+    pollingInterval = setInterval(pollNewComments, 2000);
+});
+
+// Dừng polling khi rời khỏi trang
+window.addEventListener('beforeunload', function() {
+    if (pollingInterval) {
+        clearInterval(pollingInterval);
+    }
+});
 </script>
